@@ -1,0 +1,197 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-cyan: var(--lab-cyan);
+  --color-blue: var(--lab-blue);
+  --color-violet: var(--lab-violet);
+  --color-magenta: var(--lab-magenta);
+  --color-surface: var(--lab-surface);
+  --color-surface-2: var(--lab-surface-2);
+  --color-line: var(--lab-line);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  color-scheme: dark;
+  --background: #05070d;
+  --foreground: #e6ebf5;
+  --card: #0a0f1c;
+  --card-foreground: #e6ebf5;
+  --popover: #0a0f1c;
+  --popover-foreground: #e6ebf5;
+  --primary: #22d3ee;
+  --primary-foreground: #03121a;
+  --secondary: #111829;
+  --secondary-foreground: #e6ebf5;
+  --muted: #111829;
+  --muted-foreground: #8b95ab;
+  --accent: #141c30;
+  --accent-foreground: #e6ebf5;
+  --destructive: #f87171;
+  --border: rgba(148, 163, 199, 0.14);
+  --input: rgba(148, 163, 199, 0.2);
+  --ring: #22d3ee;
+  --radius: 0.75rem;
+
+  --lab-cyan: #22d3ee;
+  --lab-blue: #3b82f6;
+  --lab-violet: #8b5cf6;
+  --lab-magenta: #d946ef;
+  --lab-surface: #0a0f1c;
+  --lab-surface-2: #0e1526;
+  --lab-line: rgba(148, 163, 199, 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: rgba(34, 211, 238, 0.25);
+  }
+  :focus-visible {
+    outline: 2px solid var(--lab-cyan);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--lab-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--lab-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, #e6ebf5 10%, var(--lab-cyan) 55%, var(--lab-violet) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glass {
+  background: linear-gradient(180deg, rgba(14, 21, 38, 0.72), rgba(10, 15, 28, 0.6));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+@keyframes scan {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(110%);
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.flow-line {
+  stroke-dasharray: 4 6;
+  animation: dash-flow 1.6s linear infinite;
+}
+.pulse-soft {
+  animation: pulse-soft 2.8s ease-in-out infinite;
+}
+.spin-slow {
+  animation: spin-slow 40s linear infinite;
+}
+.drift {
+  animation: drift 9s ease-in-out infinite;
+}
+.caret {
+  animation: blink 1s steps(1) infinite;
+}
+
+dialog::backdrop {
+  background: rgba(3, 5, 10, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
