@@ -13,7 +13,7 @@ export const profile = {
   email: 'yashrajsah082@gmail.com',
   phone: '+91 77093 08941',
   phoneHref: 'tel:+917709308941',
-  linkedin: 'https://www.linkedin.com/in/yashraj-sah',
+  linkedin: 'https://www.linkedin.com/in/yashrajsah/',
   github: 'https://github.com/Thenameisyashraj1707',
   mailto: 'mailto:yashrajsah082@gmail.com?subject=Portfolio%20Inquiry%20-%20Yashraj%20Sah',
   resume: '/Yashraj-Sah-Resume.pdf',
